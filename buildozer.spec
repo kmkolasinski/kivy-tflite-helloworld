@@ -13,7 +13,7 @@ package.domain = org.test
 source.dir = .
 
 # (list) Source files to include (let empty to include all the files)
-source.include_exts = py,png,jpg,kv,atlas
+source.include_exts = py,png,jpg,kv,atlas,tflite
 
 # (list) List of inclusions using pattern matching
 #source.include_patterns = assets/*,images/*.png
@@ -36,7 +36,7 @@ version = 0.1
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-requirements = python3,kivy
+requirements = python3,kivy,numpy
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
@@ -156,7 +156,8 @@ fullscreen = 0
 
 # (list) Gradle dependencies to add (currently works only with sdl2_gradle
 # bootstrap)
-android.gradle_dependencies = "org.tensorflow:tensorflow-lite:+",'org.tensorflow:tensorflow-lite-support:0.0.0-nightly'
+#android.gradle_dependencies = "org.tensorflow:tensorflow-lite:1.12.0",'org.tensorflow:tensorflow-lite-support:0.0.0-nightly'
+android.gradle_dependencies = org.tensorflow:tensorflow-lite:1.12.0, org.tensorflow:tensorflow-lite-support:0.3.0
 
 # (list) add java compile options
 # this can for example be necessary when importing certain java libraries using the 'android.gradle_dependencies' option
@@ -214,13 +215,14 @@ android.gradle_dependencies = "org.tensorflow:tensorflow-lite:+",'org.tensorflow
 
 # (str) Android logcat filters to use
 #android.logcat_filters = *:S python:D
-android.logcat_filters = *:S AndroidRuntime:E
+android.logcat_filters = *:S python
 
 # (bool) Copy library instead of making a libpymodules.so
 #android.copy_libs = 1
 
 # (str) The Android arch to build for, choices: armeabi-v7a, arm64-v8a, x86, x86_64
-android.arch = armeabi-v7a
+android.arch = arm64-v8a
+# armeabi-v7a
 
 # (int) overrides automatic versionCode computation (used in build.gradle)
 # this is not the same as app version and should only be edited if you know what you're doing
@@ -246,7 +248,7 @@ android.arch = armeabi-v7a
 #p4a.hook =
 
 # (str) Bootstrap to use for android builds
-# p4a.bootstrap = sdl2
+p4a.bootstrap = sdl2
 
 # (int) port number to specify an explicit --port= p4a argument (eg for bootstrap flask)
 #p4a.port =
